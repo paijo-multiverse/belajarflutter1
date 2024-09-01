@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "929310931458",
+    "project_id": "belajarloginfirebase-6fa45",
+    "storage_bucket": "belajarloginfirebase-6fa45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929310931458:android:d3f8bc09367bc0bea4851b",
+        "android_client_info": {
+          "package_name": "com.example.belajar_login_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929310931458-3vj9h2kpua6jv3vuqd6pkh3q5g5dkj8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8MTjwSlUnlVSmoyOOpCe87mXsLRdfuic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929310931458-3vj9h2kpua6jv3vuqd6pkh3q5g5dkj8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
