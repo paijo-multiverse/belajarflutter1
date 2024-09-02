@@ -95,8 +95,6 @@ class _LoginState extends State<Login> {
                   ],
                 ),
                 const SizedBox(height: 5),
-                const Text('atau'),
-                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
