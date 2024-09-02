@@ -13,6 +13,7 @@ class _DaftarState extends State<Daftar> {
   final _passwordKontroller = TextEditingController();
   final _konfirmasiPassword = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _sembunyi = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +43,19 @@ class _DaftarState extends State<Daftar> {
                 ),
                 TextFormField(
                   controller: _passwordKontroller,
-                  decoration: const InputDecoration(
-                    label: Text('Masukkan password'),
+                  decoration: InputDecoration(
+                    label: const Text('Masukkan password'),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _sembunyi = !_sembunyi;
+                        });
+                      },
+                      icon: Icon(
+                          _sembunyi ? Icons.visibility : Icons.visibility_off),
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: _sembunyi,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password tidak boleh kosong';
@@ -55,10 +65,19 @@ class _DaftarState extends State<Daftar> {
                 ),
                 TextFormField(
                   controller: _konfirmasiPassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     label: Text('Ulangi Password'),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _sembunyi = !_sembunyi;
+                        });
+                      },
+                      icon: Icon(
+                          _sembunyi ? Icons.visibility : Icons.visibility_off),
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: _sembunyi,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'konfirmasi Password tidak boleh kosong';
