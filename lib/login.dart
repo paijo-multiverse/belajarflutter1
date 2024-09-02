@@ -77,6 +77,7 @@ class _LoginState extends State<Login> {
                     child: const Text('Masuk'),
                   ),
                 ),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -95,7 +96,7 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 5),
                 const Text('atau'),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
