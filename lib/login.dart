@@ -61,7 +61,6 @@ class _LoginState extends State<Login> {
                     return null;
                   },
                 ),
-                Text('data'),
                 const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
@@ -77,6 +76,7 @@ class _LoginState extends State<Login> {
                     child: const Text('Masuk'),
                   ),
                 ),
+                Text('data'),
                 const SizedBox(height: 5),
                 const Text('atau'),
                 const SizedBox(height: 5),
