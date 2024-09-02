@@ -67,7 +67,7 @@ class _DaftarState extends State<Daftar> {
                   TextFormField(
                     controller: _konfirmasiPassword,
                     decoration: InputDecoration(
-                      label: Text('Ulangi Password'),
+                      label: const Text('Ulangi Password'),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {

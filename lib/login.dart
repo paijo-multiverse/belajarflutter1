@@ -1,4 +1,5 @@
 import 'package:belajar_login_firebase/daftar.dart';
+import 'package:belajar_login_firebase/lupa.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -76,7 +77,22 @@ class _LoginState extends State<Login> {
                     child: const Text('Masuk'),
                   ),
                 ),
-                Text('data'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Lupa(),
+                          ),
+                        );
+                      },
+                      child: const Text('Lupa password ?'),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 5),
                 const Text('atau'),
                 const SizedBox(height: 5),
