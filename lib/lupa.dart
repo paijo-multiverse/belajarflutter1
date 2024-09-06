@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Lupa extends StatefulWidget {
@@ -10,6 +11,23 @@ class Lupa extends StatefulWidget {
 class _LupaState extends State<Lupa> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+
+  Future<void> resetPassword() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text);
+      if (mounted) {
+        const snackbar = SnackBar(
+            content: Text('Request password berhasil, silahkan cek email'));
+        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      }
+    } catch (e) {
+      if (mounted) {
+        const snackbar = SnackBar(content: Text('Email Anda tidak ditemukan'));
+        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
