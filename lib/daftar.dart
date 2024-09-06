@@ -23,7 +23,7 @@ class _DaftarState extends State<Daftar> {
         backgroundColor: Colors.amber,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.all(25),
         child: SingleChildScrollView(
           child: Form(
               key: _formKey,
@@ -105,7 +105,6 @@ class _DaftarState extends State<Daftar> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 18),
                         backgroundColor: Colors.amber,
                         foregroundColor: Colors.black,
                       ),

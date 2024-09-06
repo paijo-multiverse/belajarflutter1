@@ -1,5 +1,6 @@
 import 'package:belajar_login_firebase/daftar.dart';
 import 'package:belajar_login_firebase/lupa.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -15,6 +16,17 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   bool _sembunyi = true;
 
+  // method login
+  Future<void> masuk() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordkController.text);
+      print('Berhasil');
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +36,7 @@ class _LoginState extends State<Login> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(50),
+          padding: const EdgeInsets.all(25),
           child: Form(
             key: _formKey,
             child: Column(
@@ -72,7 +84,6 @@ class _LoginState extends State<Login> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
                       foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
                     ),
                     child: const Text('Masuk'),
                   ),
@@ -94,7 +105,7 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 15),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -102,7 +113,6 @@ class _LoginState extends State<Login> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
                       foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
                     ),
                     child: const Text('Masuk dengan google'),
                   ),
