@@ -24,26 +24,44 @@ class _LoginState extends State<Login> {
 
       // Periksa apakah widget masih terpasang (mounted)
       if (mounted) {
-        final snackBar = SnackBar(content: Text('Berhasil horee'));
+        const snackBar = SnackBar(content: Text('Berhasil horee'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } on FirebaseAuthException catch (e) {
       // Menggunakan switch untuk menangani error berdasarkan kode error
       switch (e.code) {
         case 'invalid-email':
-          print('Email tidak valid.');
+          if (mounted) {
+            const snackBar = SnackBar(content: Text('Email tidak valid.'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
           break;
         case 'user-disabled':
-          print('Akun pengguna dinonaktifkan.');
+          if (mounted) {
+            const snackBar =
+                SnackBar(content: Text('Akun pengguna dinonaktifkan.'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
           break;
         case 'user-not-found':
-          print('Pengguna tidak ditemukan.');
+          if (mounted) {
+            const snackBar =
+                SnackBar(content: Text('Pengguna tidak ditemukan.'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
           break;
         case 'wrong-password':
-          print('Password salah.');
+          if (mounted) {
+            const snackBar = SnackBar(content: Text('APassword salah.'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
           break;
         default:
-          print('Terjadi kesalahan: ${e.message}');
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Terjadi kesalahan: ${e.message}')),
+            );
+          }
       }
     }
   }

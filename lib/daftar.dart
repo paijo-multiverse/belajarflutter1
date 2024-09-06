@@ -1,4 +1,5 @@
 import 'package:belajar_login_firebase/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Daftar extends StatefulWidget {
@@ -14,6 +15,58 @@ class _DaftarState extends State<Daftar> {
   final _konfirmasiPassword = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _sembunyi = true;
+
+  // method daftar
+  Future<void> daftar() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text, password: _passwordKontroller.text);
+
+      if (mounted) {
+        // Berhasil mendaftar, arahkan ke halaman login dan tampilkan SnackBar
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Login()));
+        const snackBar = SnackBar(content: Text('Berhasil Mendaftar'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    } on FirebaseAuthException catch (e) {
+      // Gunakan switch untuk menangani berbagai error dan tampilkan SnackBar
+      switch (e.code) {
+        case 'weak-password':
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Password terlalu lemah.')),
+            );
+          }
+          break;
+        case 'email-already-in-use':
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Email sudah digunakan.')),
+            );
+          }
+          break;
+        case 'invalid-email':
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Format email tidak valid.')),
+            );
+          }
+          break;
+        case 'operation-not-allowed':
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Pendaftaran dinonaktifkan.')),
+            );
+          }
+          break;
+        default:
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Terjadi kesalahan: ${e.message}')),
+          );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +105,9 @@ class _DaftarState extends State<Daftar> {
                             _sembunyi = !_sembunyi;
                           });
                         },
-                        icon: Icon(
-                            _sembunyi ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(_sembunyi
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                       ),
                     ),
                     obscureText: _sembunyi,
@@ -74,8 +128,9 @@ class _DaftarState extends State<Daftar> {
                             _sembunyi = !_sembunyi;
                           });
                         },
-                        icon: Icon(
-                            _sembunyi ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(_sembunyi
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                       ),
                     ),
                     obscureText: _sembunyi,
@@ -83,7 +138,7 @@ class _DaftarState extends State<Daftar> {
                       if (value == null || value.isEmpty) {
                         return 'konfirmasi Password tidak boleh kosong';
                       }
-          
+
                       if (value != _passwordKontroller.text) {
                         return 'konfirmasi Password tidak sesuai';
                       }
@@ -96,12 +151,7 @@ class _DaftarState extends State<Daftar> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Login(),
-                            ),
-                          );
+                          daftar();
                         }
                       },
                       style: ElevatedButton.styleFrom(
