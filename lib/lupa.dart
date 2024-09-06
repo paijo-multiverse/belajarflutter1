@@ -61,7 +61,9 @@ class _LupaState extends State<Lupa> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        resetPassword();
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
