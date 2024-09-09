@@ -26,8 +26,12 @@ class _LoginState extends State<Login> {
 
       // Periksa apakah widget masih terpasang (mounted)
       if (mounted) {
-        const snackBar = SnackBar(content: Text('Berhasil horee'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Dashboard(),
+          ),
+        );
       }
     } on FirebaseAuthException catch (e) {
       // Menggunakan switch untuk menangani error berdasarkan kode error
@@ -261,7 +265,9 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      loginDenganGoogle();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
                       foregroundColor: Colors.black,
