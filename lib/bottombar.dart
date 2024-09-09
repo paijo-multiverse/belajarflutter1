@@ -1,3 +1,6 @@
+import 'package:belajar_login_firebase/daftar.dart';
+import 'package:belajar_login_firebase/login.dart';
+import 'package:belajar_login_firebase/lupa.dart';
 import 'package:flutter/material.dart';
 
 class Bottombar extends StatefulWidget {
@@ -10,6 +13,13 @@ class Bottombar extends StatefulWidget {
 class _BottombarState extends State<Bottombar> {
   int _mulaiIndex = 0;
 
+  // list halaman
+  static const List<Widget> _halaman = [
+    Login(),
+    Daftar(),
+    Lupa(),
+  ];
+
   void _saatIndexDitekan(int indexnya) {
     setState(() {
       _mulaiIndex = indexnya;
@@ -19,9 +29,7 @@ class _BottombarState extends State<Bottombar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('index ke-$_mulaiIndex'),
-      ),
+      body: _halaman[_mulaiIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
